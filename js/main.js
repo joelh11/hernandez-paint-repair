@@ -1,7 +1,6 @@
 
 document.getElementById('year').textContent = new Date().getFullYear();
 // Mobile menu
-const toggle = document.getElementById('menuToggle');
 const nav = document.getElementById('mainNav');
 if (toggle) toggle.addEventListener('click', ()=>{nav.style.display = (getComputedStyle(nav).display!=='none')?'none':'flex';});
 // Init jarallax
