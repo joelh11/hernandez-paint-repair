@@ -1,0 +1,33 @@
+<!-- GOLD RIBBON with inline SVG scallops -->
+  <div class="top-banner">
+    <div class="container">
+      <strong>¡Hola!</strong> — Call/Text <a href="tel:+13234943290">(323) 494-3290</a>
+    </div>
+
+    <!-- Half-circle scalloped edge -->
+    <svg class="ribbon-edge" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <!-- 10 units wide, 10 units high; half-circles sit on the bottom -->
+        <pattern id="scallops" width="10" height="10" patternUnits="userSpaceOnUse">
+          <circle cx="5" cy="0" r="5" fill="#f59e0b" />
+        </pattern>
+      </defs>
+      <!-- Fill the full width with the repeating pattern -->
+      <rect x="0" y="0" width="100%" height="10" fill="url(#scallops)" />
+    </svg>
+  </div>
+
+  <header class="site-header">
+  <div class="container header-inner">
+    <a href="/hernandez-paint-repair/" class="brand">
+      <span class="brand-icon" aria-hidden="true"></span>
+      <span class="brand-text">Hernández Repairs & Maintenance</span>
+    </a>
+    <nav class="main-nav" id="mainNav">
+      <a class="main-nav-links" href="/hernandez-paint-repair/services/" data-nav="services">Our Services</a>
+      <a class="main-nav-links" href="/hernandez-paint-repair/work/" data-nav="work">Our Work</a>
+      <a class="main-nav-links" href="/hernandez-paint-repair/contact/" data-nav="contact">Contact Us</a>
+      <a class="main-nav-links" href="/hernandez-paint-repair/about/" data-nav="about">About Us</a>
+    </nav>
+  </div>
+</header>
