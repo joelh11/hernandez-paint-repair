@@ -47,7 +47,7 @@ a {
 
 .top-banner .container {
   padding: 20px 0; /* smaller height */
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .top-banner a {
@@ -90,7 +90,7 @@ a {
 .site-header .brand-text {
   font-family: "Playfair Display", serif;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 24px;
   line-height: 1.2;
   color: #000;
 }
@@ -106,11 +106,15 @@ a {
   color: #111827;
 }
 
+.main-nav-links {
+  font-size: 18px;
+}
+
 /* Highlight the active navigation link */
 .main-nav a.active {
-  color: #e63946;
+  color: #397ee6;
   font-weight: bold;
-  border-bottom: 2px solid #e63946;
+  border-bottom: 2px solid #397ee6;
   background: #f7f7f7; /* Optional: subtle background */
 }
 
@@ -145,6 +149,7 @@ a {
 
 .sub {
   font-family: Inter, system-ui;
+  font-size: 0.7em;
 }
 
 .lead {
