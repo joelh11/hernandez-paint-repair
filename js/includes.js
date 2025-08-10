@@ -34,6 +34,9 @@
     host.innerHTML = html;
 
     fixLinks(host);
+
+    // Wire the hamburger after header is injected
+    if (id === "site-header") wireMobileMenu(host);
   }
 
   // Normalize links inside the injected header/footer so they work everywhere
@@ -74,6 +77,70 @@
         // If href starts with "/", strip it
         a.setAttribute("href", href.replace(/^\//, ""));
       }
+    });
+  }
+
+  // ---------------- Hamburger dropdown wiring ----------------
+  function wireMobileMenu(scope) {
+    // Avoid double-binding if this runs again
+    if (document.body.dataset.navWired === "1") return;
+    document.body.dataset.navWired = "1";
+
+    const toggleBtn = scope.querySelector("#menuToggle");
+    const navEl = scope.querySelector("#mainNav");
+
+    // If header partial doesn't have the button yet, create one (failsafe)
+    if (!toggleBtn) {
+      const btn = document.createElement("button");
+      btn.id = "menuToggle";
+      btn.className = "menu-toggle";
+      btn.setAttribute("aria-label", "Open menu");
+      btn.setAttribute("aria-controls", "mainNav");
+      btn.setAttribute("aria-expanded", "false");
+      btn.textContent = "☰";
+      // insert before nav
+      if (navEl && navEl.parentNode) navEl.parentNode.insertBefore(btn, navEl);
+    }
+
+    const btn = scope.querySelector("#menuToggle");
+    const nav = navEl;
+
+    // Backdrop element for closing on outside click (mobile)
+    let backdrop = document.getElementById("navBackdrop");
+    if (!backdrop) {
+      backdrop = document.createElement("div");
+      backdrop.id = "navBackdrop";
+      backdrop.className = "nav-backdrop";
+      backdrop.hidden = true;
+      document.body.appendChild(backdrop);
+    }
+
+    function openMenu(){
+      document.body.classList.add("nav-open");
+      btn && btn.setAttribute("aria-expanded","true");
+      backdrop.hidden = false;
+    }
+    function closeMenu(){
+      document.body.classList.remove("nav-open");
+      btn && btn.setAttribute("aria-expanded","false");
+      backdrop.hidden = true;
+    }
+    function toggleMenu(){
+      if (document.body.classList.contains("nav-open")) closeMenu(); else openMenu();
+    }
+
+    if (btn) btn.addEventListener("click", toggleMenu);
+    if (nav) {
+      nav.addEventListener("click", (e) => {
+        if (e.target.tagName === "A") closeMenu();
+      });
+    }
+    backdrop.addEventListener("click", closeMenu);
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeMenu(); });
+    document.addEventListener("click", (e) => {
+      if (!document.body.classList.contains("nav-open")) return;
+      const within = (btn && btn.contains(e.target)) || (nav && nav.contains(e.target));
+      if (!within) closeMenu();
     });
   }
 
